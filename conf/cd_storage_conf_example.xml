@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration Version="6.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="schemas/cd_storage_conf.xsd">
+    <Global>
+		<!-- SI4T:
+				Example SI4T / Elastic config. Merge with existing config
+		-->
+        <Storages>
+
+           <StorageBindings>
+				<!-- SI4T: 
+						configure custom DAO Bundles
+				-->
+               <Bundle src="SearchDAOBundle.xml"/>
+            </StorageBindings>
+			<!-- SI4T: 
+					Example configuration in case JPA is used to publish pages. This is for example the case in DD4T setups.
+					The standard Class com.tridion.storage.JAPDAOFactory is overridden.
+					It is possible to mix and match JPA and FS Search DAO factories should there be need.
+			-->
+			<Storage 
+				Type="persistence" Id="defaultdb" dialect="MSSQL" 
+				Class="com.tridion.storage.si4t.JPASearchDAOFactory">
+				<Pool Type="jdbc" Size="5" MonitorInterval="60" IdleTimeout="120" CheckoutTimeout="120" />
+				<DataSource Class="com.microsoft.sqlserver.jdbc.SQLServerDataSource">
+					<Property Name="serverName" Value="[SERVERNAME]" />
+					<Property Name="portNumber" Value="[DBPORT]" />
+					<Property Name="databaseName" Value="[DBNAME]" />
+					<Property Name="user" Value="[DBBROKERUSERNAME]" />
+					<Property Name="password" Value="[DBBROKERPASSWORD]" />
+				</DataSource>
+				<!-- 	SI4T: configure the indexer class, 
+						as well as which binaries to index, the default URL to post documents to as well as
+						pointing the indexer to specific cores for specific Publications.
+				-->
+				<Indexer Class="org.si4t.elastic.ElasticSearchIndexer" DocExtensions="txt" documentEndpoint="http://localhost:9200/" indexName="tridion" indexType="website"/>
+			</Storage>
+			
+			<!-- SI4T:
+					If the filesystem is used to publish pages to, override the standard FSDAOFactory
+					and configure the cores as desired
+			-->
+			<Storage Type="filesystem" 
+					Class="com.tridion.storage.si4t.FSSearchDAOFactory" 
+					Id="defaultFile" defaultFilesystem="false" defaultStorage="false">
+				<Indexer Class="org.si4t.elastic.ElasticSearchIndexer" DocExtensions="txt" documentEndpoint="http://localhost:9200/" user="" password="" indexName="tridion" indexType="website"/>
+			</Storage>
+        </Storages>
+    </Global>
+    <ItemTypes defaultStorageId="defaultFile" cached="false">
+    </ItemTypes>
+    
+    <!-- Specifies the location of the license file. -->
+    <License Location=""/>
+</Configuration>

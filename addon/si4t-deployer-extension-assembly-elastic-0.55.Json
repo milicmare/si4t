@@ -1,0 +1,20 @@
+{
+    "staging": {
+        "isEnabled": "true",
+        "configuration": {
+          "searchdocendpoint": "https://my-instance-on-aws:9243",
+          "indexname": "tridion-staging",
+          "user": "elastic",
+          "password": ""
+        }
+    },
+    "live": {
+        "isEnabled": "true",
+        "configuration": {
+          "searchdocendpoint": "https://my-instance-on-aws:9243",
+          "indexname": "tridion-live",
+          "user": "elastic",
+          "password": ""
+        }
+    }
+} 

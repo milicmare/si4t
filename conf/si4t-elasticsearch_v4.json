@@ -1,0 +1,104 @@
+{
+    "mappings": {
+        "dynamic": "strict",
+        "dynamic_date_formats": [
+            "date_time_no_millis"
+        ],
+        "properties": {
+            "body": {
+                "type": "text",
+                "store": true
+            },
+            "bodytext": {
+                "type": "text",
+                "store": true
+            },
+            "pagetitle": {
+                "type": "text",
+                "store": true
+            },
+            "pagestrapline": {
+                "type": "text",
+                "store": true
+            },
+            "doctype": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            },
+            "itemtype": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            },
+            "parentsgid": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "publicationid": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            },
+            "schemaid": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            },
+            "sgid": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "title": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            },
+            "type": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "url": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            }
+        }
+    }
+}
